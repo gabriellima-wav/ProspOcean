@@ -1,9 +1,14 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, Image, StyleSheet } from 'react-native';
 
 const TelaHome = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <Image
+        source={require('../../assets/ProspOcean.png')}
+        style={styles.logo}
+      />
+      <Text style={styles.logoText}>ProspOcean</Text>
       <Text style={styles.welcomeText}>
         Bem vindo ao <Text style={styles.highlightText}>ProspOcean</Text>
       </Text>
@@ -18,9 +23,20 @@ const TelaHome = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: 'white',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  logo: {
+    width: 100, // Defina a largura desejada para o ícone
+    height: 100, // Defina a altura desejada para o ícone
+    marginBottom: 20,
+  },
+  logoText: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   welcomeText: {
     fontSize: 24,
