@@ -1,78 +1,170 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, Image, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-const TelaLogin = () => {
-  const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+// Importações do Firebase
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
-  const handleLogin = async () => {
-    try {
-      const userCredential = await auth().signInWithEmailAndPassword(email, password);
-      console.log('User logged in successfully!', userCredential.user);
-    } catch (error) {
-      handleLoginError(error);
-    }
+// Configurações do Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDrJa8_QCbxD6_HgvI8TxVOEK8sa8oqKD0",
+    authDomain: "propsaiocean.firebaseapp.com",
+    projectId: "propsaiocean",
+    storageBucket: "propsaiocean.appspot.com",
+    messagingSenderId: "524007923471",
+    appId: "1:524007923471:web:2662803053d793784e287a",
+    measurementId: "G-CC6LW971QN"
   };
+   
 
-  const handleLoginError = (error) => {
-    let errorMessage = 'An error occurred.';
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-    if (error.code === 'auth/user-not-found') {
-      errorMessage = 'User not found.';
-    } else if (error.code === 'auth/wrong-password') {
-      errorMessage = 'Wrong password.';
-    }
+const TelaLogin = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    Alert.alert('Error', errorMessage);
-  };
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                navigation.navigate('TelaInicial'); 
+            })
+            .catch((error) => {
+                Alert.alert('Erro de Login', error.message);
+            });
+    };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-        autoCapitalize="none"
-      />
+    const handleForgotPassword = () => {
+        if (!email) {
+            Alert.alert('Erro', 'Por favor, insira seu email para redefinir a senha.');
+            return;
+        }
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                Alert.alert('Sucesso', 'Um email de redefinição de senha foi enviado.');
+            })
+            .catch((error) => {
+                Alert.alert('Erro', error.message);
+            });
+    };
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-        secureTextEntry
-      />
+    const handleCadastro = () => {
+        navigation.navigate('TelaCadastro');
+    };
 
-      <Button title="Login" onPress={handleLogin} />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+            <View style={styles.formContainer}>
+                <Image source={require('../../assets/ProspOcean.png')} style={styles.logo} />
+                <Text style={styles.title}>Login</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={setEmail}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Senha"
+                    secureTextEntry
+                    value={password}
+                    onChangeText={setPassword}
+                />
+                <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+                    <Text style={styles.loginButtonText}>Entrar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleForgotPassword}>
+                    <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleCadastro}>
+                    <Text style={styles.cadastroText}>Não tem uma conta? Cadastre-se</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-  },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 40,
+        left: 20,
+        zIndex: 1,
+    },
+    formContainer: {
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+        padding: 20,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 5,
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+    },
+    logo: {
+        width: 150,
+        height: 150,
+        marginBottom: 20,
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: '#2c3e50',
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    input: {
+        width: '100%',
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingLeft: 10,
+        marginBottom: 15,
+        backgroundColor: '#fff',
+    },
+    loginButton: {
+        backgroundColor: '#007bff',
+        paddingVertical: 15,
+        borderRadius: 5,
+        width: '100%',
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    loginButtonText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    forgotPasswordText: {
+        marginTop: 10,
+        color: '#007bff',
+        textDecorationLine: 'underline',
+    },
+    cadastroText: {
+        marginTop: 20,
+        color: '#007bff',
+        textDecorationLine: 'underline',
+    },
 });
 
 export default TelaLogin;
