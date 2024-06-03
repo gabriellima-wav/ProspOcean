@@ -37,7 +37,7 @@ const CadastroScreen = ({ navigation }) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
-        navigation.navigate('TelaInicio');
+        navigation.navigate('TelaInicial');
       })
       .catch((error) => {
         Alert.alert('Erro', error.message);

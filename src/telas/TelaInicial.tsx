@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const LoginScreen = () => {
+const TelaInicial = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Como posso ajudar?</Text>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default TelaInicial;
