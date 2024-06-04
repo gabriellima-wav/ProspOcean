@@ -1,52 +1,75 @@
+// src/telas/TelaHome.js
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 
 const TelaHome = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Image
-        source={require('../../assets/ProspOcean.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.logoText}>ProspOcean</Text>
-      <Text style={styles.welcomeText}>
-        Bem-vindo ao <Text style={styles.highlightText}>ProspOcean</Text>
-      </Text>
-      <Button
-        title="Ir para Login"
-        onPress={() => navigation.navigate('TelaLogin')}
-      />
-    </View>
+    <ImageBackground source={require('../../assets/backpp.jpg')} style={styles.background}>
+      <View style={styles.container}>
+        <Text style={styles.welcomeText}>Seja Bem-Vindo!</Text>
+        <View style={styles.logoContainer}>
+          <Text style={styles.logoText}>ProspOcean</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaLogin')}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaCadastro')}>
+          <Text style={styles.buttonText}>Signup</Text>
+        </TouchableOpacity>
+        <Text style={styles.footerText}>ProspAI©</Text>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#0000', 
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 30,
-  },
-  logo: {
-    width: 100, 
-    height: 100, 
-    marginBottom: 20,
-  },
-  logoText: {
-    fontSize: 38,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#4682B4', 
+    paddingBottom: 50,
+    paddingHorizontal: 20,
   },
   welcomeText: {
-    fontSize: 24,
-    marginBottom: 20,
+    fontSize: 26,
+    color: 'white',
     textAlign: 'center',
-    color: '#4682B4', 
+    position: 'absolute',
+    top: 100,
+    fontWeight: 'bold',
   },
-  highlightText: {
-    color: '0000', 
+  logoContainer: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  logoText: {
+    fontSize: 32,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#0a74da', // Ajuste a cor conforme necessário
+    paddingVertical: 15,
+    paddingHorizontal: 50,
+    borderRadius: 25,
+    marginVertical: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  footerText: {
+    color: 'white',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 
