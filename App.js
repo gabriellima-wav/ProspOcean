@@ -12,6 +12,13 @@ import TelaInicial from './src/telas/TelaInicial';
 import TelaCategorias from './src/telas/TelaCategorias';
 import TelaDoacao from './src/telas/TelaDoacao';
 
+import CategoriaClassificacao from './src/telas/CategoriaClassificacao';
+import CategoriaIdentificacao from './src/telas/CategoriaIdentificacao';
+import CategoriaMonitoramento from './src/telas/CategoriaMonitoramento';
+import CategoriaCuidados from './src/telas/CategoriasCuidados';
+import CategoriaEncontros from './src/telas/CategoriasEncontros';
+import CategoriaRelatorios from './src/telas/CategoriasRelatorios';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +41,7 @@ function MyTabs() {
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        headerStyle: { backgroundColor: '#1d3557' }, // Azul
+        headerStyle: { backgroundColor: '#0000FF' }, // Azul
         headerTintColor: '#fff',
       })}
     >
@@ -80,6 +87,36 @@ const App = () => {
           name="TelaInicial"
           component={MyTabs}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CategoriaIdentificacao"
+          component={CategoriaIdentificacao}
+          options={{ headerTitle: 'Identificação' }}
+        />
+        <Stack.Screen
+          name="CategoriaEncontros"
+          component={CategoriaEncontros}
+          options={{ headerTitle: 'Encontros' }}
+        />
+        <Stack.Screen
+          name="CategoriaCuidados"
+          component={CategoriaCuidados}
+          options={{ headerTitle: 'Cuidados' }}
+        />
+        <Stack.Screen
+          name="CategoriaClassificacao"
+          component={CategoriaClassificacao}
+          options={{ headerTitle: 'Classificação' }}
+        />
+        <Stack.Screen
+          name="CategoriaRelatorios"
+          component={CategoriaRelatorios}
+          options={{ headerTitle: 'Relatórios' }}
+        />
+        <Stack.Screen
+          name="CategoriaMonitoramento"
+          component={CategoriaMonitoramento}
+          options={{ headerTitle: 'Monitoramento' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
