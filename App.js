@@ -24,11 +24,11 @@ function MyTabs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === '') {
+          if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === '') {
+          } else if (route.name === 'Categorias') {
             iconName = focused ? 'map' : 'map-outline';
-          } else if (route.name === '') {
+          } else if (route.name === 'Doações') {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
@@ -38,7 +38,7 @@ function MyTabs() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Categorias" component={TelaCategorias} options={{ tabBarLabel: 'TelaCategorias' }} />
+      <Tab.Screen name="Categorias" component={TelaCategorias} options={{ tabBarLabel: 'Categorias' }} />
       <Tab.Screen name="Home" component={TelaInicial} options={{ tabBarLabel: 'Mapa' }} />
       <Tab.Screen name="Doações" component={TelaDoacao} options={{ tabBarLabel: 'TelaDoacao' }} />
     </Tab.Navigator>

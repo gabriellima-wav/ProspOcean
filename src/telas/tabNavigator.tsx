@@ -7,7 +7,6 @@ import TelaInicial from './TelaInicial';
 import TelaCategorias from './TelaCategorias';
 import TelaDoacao from './TelaDoacao';
 
-
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
@@ -17,11 +16,11 @@ function MyTabs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === '') {
+          if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === '') {
+          } else if (route.name === 'Categorias') {
             iconName = focused ? 'map' : 'map-outline';
-          } else if (route.name === '') {
+          } else if (route.name === 'Doações') {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 

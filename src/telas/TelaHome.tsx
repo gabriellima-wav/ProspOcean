@@ -1,4 +1,3 @@
-// src/telas/TelaHome.js
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 
