@@ -12,7 +12,6 @@ const TelaInicial = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Como posso ajudar?</Text>
       <MapView 
         style={styles.map}
         initialRegion={initialRegion}
@@ -51,12 +50,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: 'bold', 
     marginBottom: 20,
   },
   map: {
     width: '100%',
-    height: '90%', 
+    height: '70%', 
   },
 });
 
