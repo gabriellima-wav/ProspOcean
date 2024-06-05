@@ -30,9 +30,32 @@ function MyTabs() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Categorias" component={TelaCategorias} options={{ tabBarLabel: 'TelaCategorias' }} />
-      <Tab.Screen name="Home" component={TelaInicial} options={{ tabBarLabel: 'Mapa' }} />
-      <Tab.Screen name="Doações" component={TelaDoacao} options={{ tabBarLabel: 'TelaDoacao' }} />
+      <Tab.Screen 
+        name="Categorias" 
+        component={TelaCategorias} 
+        options={{ 
+          tabBarLabel: 'TelaCategorias',
+          headerStyle: { backgroundColor: '#1d3557' }, 
+        }} 
+      />
+      <Tab.Screen 
+        name="Home" 
+        component={TelaInicial} 
+        options={{ 
+          tabBarLabel: 'Mapa',
+          headerStyle: { backgroundColor: '#1d3557' }, 
+          headerTintColor: '#fff',
+        }} 
+      />
+      <Tab.Screen 
+        name="Doações" 
+        component={TelaDoacao} 
+        options={{ 
+          tabBarLabel: 'TelaDoacao',
+          headerStyle: { backgroundColor: '#1d3557' }, 
+          headerTintColor: '#fff',
+        }} 
+      />
     </Tab.Navigator>
   );
 }

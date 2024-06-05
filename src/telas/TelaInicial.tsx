@@ -4,10 +4,10 @@ import MapView, { Marker } from 'react-native-maps';
 
 const TelaInicial = () => {
   const initialRegion = {
-    latitude: -23.55052,
-    longitude: -46.633308,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitude: -29.4597,
+    longitude: -51.9634,
+    latitudeDelta: 0.5,
+    longitudeDelta: 0.5,
   };
 
   return (
@@ -18,9 +18,24 @@ const TelaInicial = () => {
         initialRegion={initialRegion}
       >
         <Marker
-          coordinate={{ latitude: -23.55052, longitude: -46.633308 }}
-          title="São Paulo"
-          description="Cidade em São Paulo"
+          coordinate={{ latitude: -29.4597, longitude: -51.9731 }}
+          title="Lajeado"
+          description="Cidade de Lajeado"
+        />
+        <Marker
+          coordinate={{ latitude: -29.4464, longitude: -51.9487 }}
+          title="Estrela"
+          description="Cidade de Estrela"
+        />
+        <Marker
+          coordinate={{ latitude: -29.4008, longitude: -51.9505 }}
+          title="Arroio do Meio"
+          description="Cidade de Arroio do Meio"
+        />
+        <Marker
+          coordinate={{ latitude: -29.5144, longitude: -51.9929 }}
+          title="Cruzeiro do Sul"
+          description="Cidade de Cruzeiro do Sul"
         />
       </MapView>
     </View>
@@ -41,7 +56,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: '60%',
+    height: '90%', 
   },
 });
 

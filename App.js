@@ -2,8 +2,6 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -36,11 +34,25 @@ function MyTabs() {
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
+        headerStyle: { backgroundColor: '#1d3557' }, // Azul
+        headerTintColor: '#fff',
       })}
     >
-      <Tab.Screen name="Categorias" component={TelaCategorias} options={{ tabBarLabel: 'Categorias' }} />
-      <Tab.Screen name="Home" component={TelaInicial} options={{ tabBarLabel: 'Mapa' }} />
-      <Tab.Screen name="Doações" component={TelaDoacao} options={{ tabBarLabel: 'TelaDoacao' }} />
+      <Tab.Screen 
+        name="Categorias" 
+        component={TelaCategorias} 
+        options={{ tabBarLabel: 'Categorias' }} 
+      />
+      <Tab.Screen 
+        name="Home" 
+        component={TelaInicial} 
+        options={{ tabBarLabel: 'Mapa' }} 
+      />
+      <Tab.Screen 
+        name="Doações" 
+        component={TelaDoacao} 
+        options={{ tabBarLabel: 'Doações' }} 
+      />
     </Tab.Navigator>
   );
 }
@@ -70,7 +82,7 @@ const App = () => {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-    </NavigationContainer> 
+    </NavigationContainer>
   );
 };
 
