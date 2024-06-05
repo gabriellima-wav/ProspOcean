@@ -17,23 +17,23 @@ function MyTabs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'Tela1') {
+          if (route.name === '') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'TelaInicial') {
+          } else if (route.name === '') {
             iconName = focused ? 'map' : 'map-outline';
-          } else if (route.name === 'Tela2') {
+          } else if (route.name === '') {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Tela1" component={TelaCategorias} options={{ tabBarLabel: 'TelaCategorias' }} />
-      <Tab.Screen name="TelaInicial" component={TelaInicial} options={{ tabBarLabel: 'Mapa' }} />
-      <Tab.Screen name="Tela2" component={TelaDoacao} options={{ tabBarLabel: 'TelaDoacao' }} />
+      <Tab.Screen name="Categorias" component={TelaCategorias} options={{ tabBarLabel: 'TelaCategorias' }} />
+      <Tab.Screen name="Home" component={TelaInicial} options={{ tabBarLabel: 'Mapa' }} />
+      <Tab.Screen name="Doações" component={TelaDoacao} options={{ tabBarLabel: 'TelaDoacao' }} />
     </Tab.Navigator>
   );
 }
