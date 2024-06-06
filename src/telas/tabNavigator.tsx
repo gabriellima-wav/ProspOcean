@@ -1,15 +1,15 @@
-// src/telas/TabNavigator.js
-import React from 'react';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import TelaCategorias from './TelaCategorias';
 import TelaInicial from './TelaInicial';
+import TelaCategorias from './TelaCategorias';
 import TelaDoacao from './TelaDoacao';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -20,7 +20,7 @@ const TabNavigator = () => {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Categorias') {
             iconName = focused ? 'map' : 'map-outline';
-          } else if (route.name === 'Doacoes') {
+          } else if (route.name === 'Doações') {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
@@ -28,27 +28,42 @@ const TabNavigator = () => {
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        headerStyle: { backgroundColor: '#0000FF' },
-        headerTintColor: '#fff',
       })}
     >
       <Tab.Screen 
         name="Categorias" 
         component={TelaCategorias} 
-        options={{ tabBarLabel: 'Categorias' }} 
+        options={{ 
+          tabBarLabel: 'TelaCategorias',
+          headerStyle: { backgroundColor: '#1d3557' }, 
+        }} 
       />
       <Tab.Screen 
         name="Home" 
         component={TelaInicial} 
-        options={{ tabBarLabel: 'Home' }} 
+        options={{ 
+          tabBarLabel: 'Mapa',
+          headerStyle: { backgroundColor: '#1d3557' }, 
+          headerTintColor: '#fff',
+        }} 
       />
       <Tab.Screen 
-        name="Doacoes" 
+        name="Doações" 
         component={TelaDoacao} 
-        options={{ tabBarLabel: 'Doações' }} 
+        options={{ 
+          tabBarLabel: 'TelaDoacao',
+          headerStyle: { backgroundColor: '#1d3557' }, 
+          headerTintColor: '#fff',
+        }} 
       />
     </Tab.Navigator>
   );
-};
+}
 
-export default TabNavigator;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}

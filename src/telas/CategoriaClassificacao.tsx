@@ -1,14 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const CategoriaClassificacao = ({ navigation }) => {
+const CategoriaClassificacao = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Categoria Classificação</Text>
-      <Button
-        title="Voltar para Categorias"
-        onPress={() => navigation.navigate('TelaCategorias')}
-      />
     </View>
   );
 };
