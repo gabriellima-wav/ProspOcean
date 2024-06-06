@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+// src/telas/TabNavigator.js
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import TelaInicial from './TelaInicial';
 import TelaCategorias from './TelaCategorias';
+import TelaInicial from './TelaInicial';
 import TelaDoacao from './TelaDoacao';
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -20,7 +20,7 @@ function MyTabs() {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Categorias') {
             iconName = focused ? 'map' : 'map-outline';
-          } else if (route.name === 'Doações') {
+          } else if (route.name === 'Doacoes') {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
@@ -28,42 +28,27 @@ function MyTabs() {
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
+        headerStyle: { backgroundColor: '#0000FF' },
+        headerTintColor: '#fff',
       })}
     >
       <Tab.Screen 
         name="Categorias" 
         component={TelaCategorias} 
-        options={{ 
-          tabBarLabel: 'TelaCategorias',
-          headerStyle: { backgroundColor: '#1d3557' }, 
-        }} 
+        options={{ tabBarLabel: 'Categorias' }} 
       />
       <Tab.Screen 
         name="Home" 
         component={TelaInicial} 
-        options={{ 
-          tabBarLabel: 'Mapa',
-          headerStyle: { backgroundColor: '#1d3557' }, 
-          headerTintColor: '#fff',
-        }} 
+        options={{ tabBarLabel: 'Home' }} 
       />
       <Tab.Screen 
-        name="Doações" 
+        name="Doacoes" 
         component={TelaDoacao} 
-        options={{ 
-          tabBarLabel: 'TelaDoacao',
-          headerStyle: { backgroundColor: '#1d3557' }, 
-          headerTintColor: '#fff',
-        }} 
+        options={{ tabBarLabel: 'Doações' }} 
       />
     </Tab.Navigator>
   );
-}
+};
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
-  );
-}
+export default TabNavigator;
