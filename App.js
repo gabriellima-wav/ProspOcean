@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
 import TelaHome from './src/telas/TelaHome';
 import TelaLogin from './src/telas/TelaLogin';
@@ -27,14 +27,14 @@ function MyTabs() {
           } else if (route.name === 'Categorias') {
             iconName = focused ? 'map' : 'map-outline';
           } else if (route.name === 'Doações') {
-            iconName = focused ? 'settings' : 'settings-outline';
+            iconName = focused ? 'heart' : 'heart-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        headerStyle: { backgroundColor: '#0000FF' }, 
+        headerStyle: { backgroundColor: '#0000FF' },
         headerTintColor: '#fff',
       })}
     >

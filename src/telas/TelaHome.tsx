@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from 'react-native';
-import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 const TelaHome = ({ navigation }) => {
   return (
@@ -37,36 +36,36 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   welcomeText: {
-    fontSize: 26,
+    fontSize: 30,
     color: 'white',
     textAlign: 'center',
-    marginTop: 120, // Increased margin to move title down
+    marginTop: 120, 
     fontWeight: 'bold',
   },
   logoContainer: {
     alignItems: 'center',
-    marginTop: 300, // Increased margin to move logo down
+    marginTop: 350, 
     marginBottom: 20,
   },
   logo: {
-    width: 74,
-    height: 74,
-    marginBottom: 10,
+    width: 110, 
+    height: 110, 
+    marginBottom: 5,
   },
   logoText: {
-    fontSize: 24,
+    fontSize: 30,
     color: 'white',
     fontWeight: 'bold',
   },
   buttonsContainer: {
-    marginTop: 10, // Increased margin to move buttons down
+    marginTop: 10, 
     alignItems: 'center',
     width: '100%',
   },
   button: {
     backgroundColor: '#0a74da',
     paddingVertical: 15,
-    borderRadius: 25,
+    borderRadius: 35,
     marginVertical: 10,
     width: '80%',
     alignItems: 'center',
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     position: 'absolute',
-    bottom: 10,
+    bottom: 30, 
   },
 });
 
