@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Ionicons } from 'react-native-vector-icons';
 
+
 const TelaCategorias = ({ navigation }) => {
   const categorias = [
     { name: 'Identificação', screen: 'CategoriaIdentificacao', icon: 'clipboard' },
-    { name: 'Encontros', screen: 'CategoriaEncontros', icon: 'ios-people' },
-    { name: 'Cuidados', screen: 'CategoriaCuidados', icon: 'ios-heart' },
+    { name: 'Encontros', screen: 'CategoriaEncontros', icon: 'team' },
+    { name: 'Cuidados', screen: 'CategoriaCuidados', icon: 'heart' },
     { name: 'Classificação', screen: 'CategoriaClassificacao', icon: 'ios-list' },
-    { name: 'Relatórios', screen: 'CategoriaRelatorios', icon: 'ios-paper' },
+    { name: 'Relatórios', screen: 'CategoriaRelatorios', icon: 'file-text' },
     { name: 'Monitoramento', screen: 'CategoriaMonitoramento', icon: 'ios-eye' }
   ];
 
@@ -36,13 +37,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0000FF', // Cor de fundo azul
+    backgroundColor: '#0000FF', 
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#fff', // Cor do texto branco
+    color: '#fff', 
   },
   grid: {
     flexDirection: 'row',
@@ -50,16 +51,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#1f187c', // Cor de fundo azul
-    width: 100, // Largura do botão
-    height: 100, // Altura do botão
+    backgroundColor: '#1f187c',
+    width: 100, 
+    height: 100, 
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20, // Arredondar os cantos do botão
+    borderRadius: 20, 
   },
   buttonText: {
-    color: '#ffffff', // Cor do texto dos botões branco
+    color: '#ffffff', 
     fontSize: 16,
     textAlign: 'center',
     marginTop: 10,
