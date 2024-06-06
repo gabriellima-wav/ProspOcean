@@ -1,22 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const TelaCategorias = () => {
+const TelaCategorias = ({ navigation }) => {
   const categorias = [
-    'Identificação',
-    'Encontros',
-    'Cuidados',
-    'Classificação',
-    'Relatórios',
-    'Monitoramento'
+    { name: 'Identificação', screen: 'CategoriaIdentificacao' },
+    { name: 'Encontros', screen: 'CategoriaEncontros' },
+    { name: 'Cuidados', screen: 'CategoriaCuidados' },
+    { name: 'Classificação', screen: 'CategoriaClassificacao' },
+    { name: 'Relatórios', screen: 'CategoriaRelatorios' },
+    { name: 'Monitoramento', screen: 'CategoriaMonitoramento' }
   ];
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Categorias</Text>
       {categorias.map((categoria, index) => (
-        <TouchableOpacity key={index} style={styles.button}>
-          <Text style={styles.buttonText}>{categoria}</Text>
+        <TouchableOpacity 
+          key={index} 
+          style={styles.button} 
+          onPress={() => navigation.navigate(categoria.screen)}
+        >
+          <Text style={styles.buttonText}>{categoria.name}</Text>
         </TouchableOpacity>
       ))}
     </View>
