@@ -34,13 +34,13 @@ function MyTabs() {
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        headerStyle: { backgroundColor: '#0000FF' }, // Azul
+        headerStyle: { backgroundColor: '#0000FF' }, 
         headerTintColor: '#fff',
       })}
     >
       <Tab.Screen 
         name="Categorias" 
-        component={CategoriasNavigator} // Usa o CategoriasNavigator
+        component={CategoriasNavigator} 
         options={{ tabBarLabel: 'Categorias' }} 
       />
       <Tab.Screen 
