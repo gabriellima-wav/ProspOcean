@@ -1,20 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from 'react-native';
+import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 const TelaHome = ({ navigation }) => {
   return (
-    <ImageBackground source={require('../../assets/backpp.jpg')} style={styles.background}>
+    <ImageBackground source={require('../../assets/background.png')} style={styles.background}>
       <View style={styles.container}>
         <Text style={styles.welcomeText}>Seja Bem-Vindo!</Text>
         <View style={styles.logoContainer}>
+          <Image source={require('../../assets/ProspOcean.png')} style={styles.logo} />
           <Text style={styles.logoText}>ProspOcean</Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaLogin')}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaCadastro')}>
-          <Text style={styles.buttonText}>Signup</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaLogin')}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaCadastro')}>
+            <Text style={styles.buttonText}>Signup</Text>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.footerText}>ProspAI©</Text>
       </View>
     </ImageBackground>
@@ -28,32 +32,40 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 50,
     paddingHorizontal: 20,
   },
   welcomeText: {
     fontSize: 26,
     color: 'white',
     textAlign: 'center',
-    position: 'absolute',
-    top: 100,
+    marginTop: 120, // Increased margin to move title down
     fontWeight: 'bold',
   },
   logoContainer: {
-    marginBottom: 20,
     alignItems: 'center',
+    marginTop: 300, // Increased margin to move logo down
+    marginBottom: 20,
+  },
+  logo: {
+    width: 74,
+    height: 74,
+    marginBottom: 10,
   },
   logoText: {
-    fontSize: 32,
+    fontSize: 24,
     color: 'white',
     fontWeight: 'bold',
   },
+  buttonsContainer: {
+    marginTop: 10, // Increased margin to move buttons down
+    alignItems: 'center',
+    width: '100%',
+  },
   button: {
-    backgroundColor: '#0a74da', // Ajuste a cor conforme necessário
+    backgroundColor: '#0a74da',
     paddingVertical: 15,
-    paddingHorizontal: 50,
     borderRadius: 25,
     marginVertical: 10,
     width: '80%',
@@ -68,7 +80,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 12,
     textAlign: 'center',
-    marginTop: 20,
+    position: 'absolute',
+    bottom: 10,
   },
 });
 
