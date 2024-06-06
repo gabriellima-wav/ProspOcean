@@ -16,21 +16,23 @@ const TelaCategorias = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Escolha sua categoria</Text>
-      <View style={styles.grid}>
-        {categorias.map((categoria, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.button}
-            onPress={() => navigation.navigate(categoria.screen)}
-          >
-            {categoria.lib === 'Ionicons' ? (
-              <Ionicons name={categoria.icon} size={40} color="#fff" />
-            ) : (
-              <FontAwesome5 name={categoria.icon} size={40} color="#fff" />
-            )}
-            <Text style={styles.buttonText}>{categoria.name}</Text>
-          </TouchableOpacity>
-        ))}
+      <View style={styles.categoriesContainer}>
+        <View style={styles.grid}>
+          {categorias.map((categoria, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.button}
+              onPress={() => navigation.navigate(categoria.screen)}
+            >
+              {categoria.lib === 'Ionicons' ? (
+                <Ionicons name={categoria.icon} size={40} color="#fff" />
+              ) : (
+                <FontAwesome5 name={categoria.icon} size={40} color="#fff" />
+              )}
+              <Text style={styles.buttonText}>{categoria.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -49,16 +51,23 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: '#fff',
   },
+  categoriesContainer: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 20,
+  },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'space-between', // Ajusta o espaço entre os itens
+    width: '100%',
+    marginTop: 20, // Adiciona um espaço extra acima da grade
   },
   button: {
     backgroundColor: '#1f187c',
-    width: 100,
+    width: '30%', // Ajusta a largura do botão para ocupar um terço da largura do contêiner pai
     height: 100,
-    margin: 10,
+    marginVertical: 10, // Espaço vertical entre os botões
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
