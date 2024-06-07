@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const TelaCategorias = ({ navigation }) => {
   useEffect(() => {
@@ -10,12 +10,12 @@ const TelaCategorias = ({ navigation }) => {
   }, [navigation]); 
 
   const categorias = [
-    { name: 'Identificação', screen: 'CategoriaIdentificacao', icon: 'clipboard', lib: FontAwesome5 },
-    { name: 'Encontros', screen: 'CategoriaEncontros', icon: 'users', lib: FontAwesome5 },
-    { name: 'Cuidados', screen: 'CategoriaCuidados', icon: 'heart', lib: FontAwesome5 },
-    { name: 'Classificação', screen: 'CategoriaClassificacao', icon: 'list', lib: FontAwesome5 },
-    { name: 'Relatórios', screen: 'CategoriaRelatorios', icon: 'file-alt', lib: FontAwesome5 },
-    { name: 'Monitoramento', screen: 'CategoriaMonitoramento', icon: 'eye', lib: FontAwesome5 }
+    { name: 'Identificação', screen: 'CategoriaIdentificacao', icon: 'clipboard' },
+    { name: 'Encontros', screen: 'CategoriaEncontros', icon: 'users' },
+    { name: 'Cuidados', screen: 'CategoriaCuidados', icon: 'heart' },
+    { name: 'Classificação', screen: 'CategoriaClassificacao', icon: 'list' },
+    { name: 'Relatórios', screen: 'CategoriaRelatorios', icon: 'file-alt' },
+    { name: 'Monitoramento', screen: 'CategoriaMonitoramento', icon: 'eye' }
   ];
 
   const numColumns = 3; 
@@ -23,13 +23,14 @@ const TelaCategorias = ({ navigation }) => {
   const renderCategoriaButton = (categoria, index) => {
     const { width } = Dimensions.get('window');
     const buttonWidth = (width - 40) / numColumns - 20; 
+
     return (
       <TouchableOpacity
         key={index}
         style={[styles.button, { width: buttonWidth }]}
         onPress={() => navigation.navigate(categoria.screen)}
       >
-        <categoria.lib name={categoria.icon} size={40} color="#fff" />
+        <FontAwesome5 name={categoria.icon} size={40} color="#fff" />
         <Text style={styles.buttonText}>{categoria.name}</Text>
       </TouchableOpacity>
     );
@@ -51,9 +52,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start', // Ajustado para alinhar conteúdo para cima
     backgroundColor: '#1d3557',
-    paddingVertical: 60,
+    paddingTop: 60, // Espaço extra no topo
   },
   title: {
     fontSize: 25,
@@ -62,17 +63,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   categoriesContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#180d4a',
     borderRadius: 20,
     padding: 20,
-    marginTop: 100,
+    marginTop: 275, 
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     width: '100%',
-    marginTop: 10,
   },
   button: {
     backgroundColor: '#1f187c',
