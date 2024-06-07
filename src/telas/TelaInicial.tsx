@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 const TelaInicial = () => {
@@ -11,8 +11,8 @@ const TelaInicial = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Areas afetadas por enchentes no Rio Grande do Sul</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Áreas Afetadas por Enchentes no Rio Grande do Sul</Text>
       <MapView 
         style={styles.map}
         initialRegion={initialRegion}
@@ -38,28 +38,71 @@ const TelaInicial = () => {
           description="Cidade de Cruzeiro do Sul"
         />
       </MapView>
-    </View>
+      <View style={styles.infoContainer}>
+        <View style={styles.infoBox}>
+          <Text style={styles.infoTitle}>Temperatura</Text>
+          <Text style={styles.infoValue}>22°C</Text>
+        </View>
+        <View style={styles.infoBox}>
+          <Text style={styles.infoTitle}>Qualidade da Água</Text>
+          <Text style={styles.infoValue}>ruim</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    flexGrow: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#1d3557',
+    backgroundColor: '#fff',
+    paddingTop: 50,
+    paddingHorizontal: 10,
   },
   title: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 30,
+    color: '#1d3557',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   map: {
-    width: '95%',
-    height: '80%', 
+    width: '100%',
+    height: 400, 
     borderRadius: 15,
     overflow: 'hidden',
+    marginBottom: 20,
+  },
+  infoContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  infoBox: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 10,
+    padding: 15,
+    alignItems: 'center',
+    marginHorizontal: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  infoTitle: {
+    fontSize: 16,
+    color: '#1d3557',
+    marginBottom: 5,
+  },
+  infoValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1d3557',
   },
 });
 

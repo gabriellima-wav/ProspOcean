@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDrJa8_QCbxD6_HgvI8TxVOEK8sa8oqKD0",
@@ -21,18 +20,20 @@ const CadastroScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [cpf, setCpf] = useState('');
-  const [day, setDay] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleCadastro = () => {
-    if (!email || !password || !name || !cpf || !day || !month || !year) {
+    if (!email || !password || !name || !telefone || !cpf || !confirmPassword) {
       Alert.alert('Erro', 'Por favor, preencha todos os campos.');
       return;
     }
 
-    const birthdate = `${day}/${month}/${year}`;
+    if (password !== confirmPassword) {
+      Alert.alert('Erro', 'As senhas não coincidem.');
+      return;
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -45,95 +46,111 @@ const CadastroScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-      <Text style={styles.backButtonText}>Voltar</Text>
-    </TouchableOpacity>
-    <Text style={styles.title}>Cadastro</Text>
-    <TextInput
-      style={styles.input}
-      placeholder="Nome"
-      value={name}
-      onChangeText={setName}
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="E-mail"
-      keyboardType="email-address"
-      autoCapitalize="none"
-      value={email}
-      onChangeText={setEmail}
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="Senha"
-      secureTextEntry
-      value={password}
-      onChangeText={setPassword}
-    />
-    <TextInput
-      style={styles.input}
-      placeholder="CPF"
-      keyboardType="numeric"
-      value={cpf}
-      onChangeText={setCpf}
-    />
-    <Text style={styles.dateOfBirthLabel}>Data de Nascimento</Text>
-    <View style={styles.dateOfBirthContainer}>
-      <View style={styles.dateInputContainer}>
-        <Text style={styles.dateInputLabel}>Dia</Text>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Cadastro</Text>
+        <View style={styles.profilePicContainer}>
+          <TouchableOpacity style={styles.profilePicButton}>
+            <Text style={styles.profilePicText}>+</Text>
+          </TouchableOpacity>
+        </View>
         <TextInput
-          style={styles.dateInput}
-          placeholder="DD"
-          keyboardType="numeric"
-          value={day}
-          onChangeText={setDay}
+          style={styles.input}
+          placeholder="Nome Completo"
+          value={name}
+          onChangeText={setName}
         />
-      </View>
-      <View style={styles.dateInputContainer}>
-        <Text style={styles.dateInputLabel}>Mês</Text>
         <TextInput
-          style={styles.dateInput}
-          placeholder="MM"
-          keyboardType="numeric"
-          value={month}
-          onChangeText={setMonth}
+          style={styles.input}
+          placeholder="E-mail"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
         />
-      </View>
-      <View style={styles.dateInputContainer}>
-        <Text style={styles.dateInputLabel}>Ano</Text>
         <TextInput
-          style={styles.dateInput}
-          placeholder="YYYY"
-          keyboardType="numeric"
-          value={year}
-          onChangeText={setYear}
+          style={styles.input}
+          placeholder="Telefone"
+          keyboardType="phone-pad"
+          value={telefone}
+          onChangeText={setTelefone}
         />
+        <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          keyboardType="numeric"
+          value={cpf}
+          onChangeText={setCpf}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Confirmar Senha"
+          secureTextEntry
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleCadastro}>
+          <Text style={styles.buttonText}>Signup</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('TelaLogin')} style={styles.loginLink}>
+          <Text style={styles.loginLinkText}>Já tem uma conta? Entre na sua conta aqui</Text>
+        </TouchableOpacity>
       </View>
-    </View>
-    <TouchableOpacity style={styles.button} onPress={handleCadastro}>
-      <Text style={styles.buttonText}>Cadastrar</Text>
-    </TouchableOpacity>
-  </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#1a237e', // Fundo azul escuro
+  },
+  container: {
+    width: '100%',
+    alignItems: 'center',
     backgroundColor: '#fff',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     padding: 20,
+    marginTop: 130,
+    paddingTop: 40,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
+    color: '#1a237e', // Cor do título
+    marginBottom: 20,
+    alignSelf: 'center'
+  },
+  profilePicContainer: {
+    alignSelf: 'center',
     marginBottom: 20,
   },
+  profilePicButton: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  profilePicText: {
+    fontSize: 32,
+    color: '#fff',
+  },
   input: {
-    width: '100%',
-    height: 40,
+    width: '90%',
+    height: 50,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
@@ -141,54 +158,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   button: {
-    width: '100%',
+    width: '90%',
     backgroundColor: '#007bff',
-    padding: 10,
+    padding: 15,
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
   },
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 1,
+  loginLink: {
+    marginTop: 20,
   },
-  backButtonText: {
+  loginLinkText: {
     color: '#007bff',
-    fontSize: 16,
-  },
-  dateOfBirthLabel: {
-    width: '100%',
-    textAlign: 'left',
-    marginBottom: 5,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  dateOfBirthContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  dateInputContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginHorizontal: 5,
-  },
-  dateInputLabel: {
-    marginBottom: 5,
-  },
-  dateInput: {
-    width: '80%',
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
 
