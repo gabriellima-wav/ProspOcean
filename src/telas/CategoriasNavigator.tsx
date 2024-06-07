@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet } from 'react-native';
 import TelaCategorias from './TelaCategorias';
 import CategoriaClassificacao from './CategoriaClassificacao';
 import CategoriaIdentificacao from './CategoriaIdentificacao';
@@ -12,11 +13,11 @@ const Stack = createStackNavigator();
 
 const CategoriasNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen 
-        name="Categorias" 
+        name="Escolha a Categoria" 
         component={TelaCategorias} 
-        options={{ headerTitle: 'Categorias' }}
+        options={{ headerShown: false }}  
       />
       <Stack.Screen 
         name="CategoriaIdentificacao" 
@@ -50,6 +51,22 @@ const CategoriasNavigator = () => {
       />
     </Stack.Navigator>
   );
+};
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: '#fff',
+  },
+  headerTitleStyle: {
+    color: '#000',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
+
+const screenOptions = {
+  headerStyle: styles.headerStyle,
+  headerTitleStyle: styles.headerTitleStyle,
 };
 
 export default CategoriasNavigator;

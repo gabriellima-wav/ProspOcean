@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import TelaHome from './src/telas/TelaHome';
 import TelaLogin from './src/telas/TelaLogin';
@@ -38,20 +38,20 @@ function MyTabs() {
         headerTintColor: '#fff',
       })}
     >
-      <Tab.Screen 
-        name="Categorias" 
-        component={CategoriasNavigator} 
-        options={{ tabBarLabel: 'Categorias' }} 
+      <Tab.Screen
+        name="Categorias"
+        component={CategoriasNavigator}
+        options={{ tabBarLabel: 'Categorias' }}
       />
-      <Tab.Screen 
-        name="Home" 
-        component={TelaInicial} 
-        options={{ tabBarLabel: 'Mapa' }} 
+      <Tab.Screen
+        name="Home"
+        component={TelaInicial}
+        options={{ tabBarLabel: 'Mapa' }}
       />
-      <Tab.Screen 
-        name="Doações" 
-        component={TelaDoacao} 
-        options={{ tabBarLabel: 'Doações' }} 
+      <Tab.Screen
+        name="Doações"
+        component={TelaDoacao}
+        options={{ tabBarLabel: 'Doações' }}
       />
     </Tab.Navigator>
   );

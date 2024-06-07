@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'flex-start', // Ajustado para alinhar conteúdo para cima
+    justifyContent: 'flex-start',
     backgroundColor: '#1d3557',
     paddingTop: 60, // Espaço extra no topo
   },

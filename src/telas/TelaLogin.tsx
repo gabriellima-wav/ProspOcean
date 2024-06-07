@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
-// Configurações do Firebase
+
 const firebaseConfig = {
     apiKey: "AIzaSyDrJa8_QCbxD6_HgvI8TxVOEK8sa8oqKD0",
     authDomain: "propsaiocean.firebaseapp.com",
