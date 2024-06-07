@@ -34,7 +34,7 @@ const TelaLogin = ({ navigation }) => {
         navigation.navigate('TelaInicial');
       })
       .catch((error) => {
-        Alert.alert('Erro de Login', error.message);
+        Alert.alert('Erro de Login', 'Use email e senha válidos');
       });
   };
 
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   signupLinkText: {
-    color: '#007bff',
+    color: '#202327',
     fontSize: 14,
     fontWeight: 'bold',
   },
