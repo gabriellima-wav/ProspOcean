@@ -34,7 +34,7 @@ function MyTabs() {
         },
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        headerStyle: { backgroundColor: '#0000FF' },
+        headerStyle: { backgroundColor: '#1d3557' },
         headerTintColor: '#fff',
       })}
     >

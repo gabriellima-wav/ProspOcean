@@ -12,6 +12,7 @@ const TelaInicial = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Areas afetadas por enchentes no Rio Grande do Sul</Text>
       <MapView 
         style={styles.map}
         initialRegion={initialRegion}
@@ -46,16 +47,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#1d3557',
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold', 
-    marginBottom: 20,
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 30,
   },
   map: {
-    width: '100%',
-    height: '70%', 
+    width: '95%',
+    height: '80%', 
+    borderRadius: 15,
+    overflow: 'hidden',
   },
 });
 
