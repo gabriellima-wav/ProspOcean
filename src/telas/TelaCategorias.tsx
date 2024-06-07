@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: '#1d3557',
-    paddingTop: 60, // Espaço extra no topo
+    paddingTop: 60, 
   },
   title: {
     fontSize: 25,

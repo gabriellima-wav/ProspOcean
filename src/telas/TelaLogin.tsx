@@ -119,10 +119,10 @@ const TelaLogin = ({ navigation }) => {
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    backgroundColor: '#1a237e', // Fundo azul escuro
+    backgroundColor: '#1a237e', 
   },
   topContainer: {
-    height: '30%', // Ajuste a altura conforme necessário
+    height: '30%', 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#fff', // Cor do título
+    color: '#fff', 
   },
   form: {
     width: '100%',

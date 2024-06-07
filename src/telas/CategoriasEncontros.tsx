@@ -74,16 +74,16 @@ const CategoriaEncontros = () => {
             <MapView
               style={styles.map}
               initialRegion={{
-                latitude: -29.4597, // Use uma latitude real obtida da API
-                longitude: -51.9634, // Use uma longitude real obtida da API
+                latitude: -29.4597,
+                longitude: -51.9634, 
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01,
               }}
             >
               <Marker
                 coordinate={{
-                  latitude: -29.4597, // Use uma latitude real obtida da API
-                  longitude: -51.9634, // Use uma longitude real obtida da API
+                  latitude: -29.4597, 
+                  longitude: -51.9634, 
                 }}
                 title={item.nome}
                 description={item.endereco}

@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingHorizontal: 10,
     backgroundColor: '#e9ecef',
-    color: '#343a40',  // Text color set to black
+    color: '#343a40',  
   },
   modalButton: {
     backgroundColor: '#007bff',

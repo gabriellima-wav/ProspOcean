@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1a237e', // Fundo azul escuro
+    backgroundColor: '#1a237e',
   },
   container: {
     width: '100%',
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: '#1a237e', // Cor do título
+    color: '#1a237e', 
     marginBottom: 20,
     alignSelf: 'center'
   },
