@@ -10,11 +10,13 @@ const CategoriaEncontros = () => {
   const [endereco, setEndereco] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
   const apiUrl = Platform.OS === 'android'
-    ? 'http://10.0.2.2:8080/api/centros-reciclagem'
-    : 'http://192.168.15.180:8080/api/centros-reciclagem';
+    ? 'http://192.168.1.20:8080/centros'
+    : 'http://localhost:8080/centros';
 
   useEffect(() => {
     fetchCentros();
@@ -24,7 +26,7 @@ const CategoriaEncontros = () => {
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
-      setCentros(data.content);
+      setCentros(data);
       setLoading(false);
     } catch (error) {
       console.error('Erro ao buscar centros de reciclagem:', error);
@@ -34,7 +36,7 @@ const CategoriaEncontros = () => {
 
   const handleAddCentro = async () => {
     try {
-      const centro = { nome, endereco, telefone, email };
+      const centro = { nome, endereco, telefone, email, latitude: parseFloat(latitude), longitude: parseFloat(longitude) };
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -52,6 +54,8 @@ const CategoriaEncontros = () => {
       setEndereco('');
       setTelefone('');
       setEmail('');
+      setLatitude('');
+      setLongitude('');
       setModalVisible(false);
     } catch (error) {
       console.error(error);
@@ -61,7 +65,7 @@ const CategoriaEncontros = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Registrar Encontro de Limpeza</Text>
+      <Text style={styles.title}>Centros de Reciclagem</Text>
       <FlatList
         data={centros}
         keyExtractor={(item) => item.id.toString()}
@@ -74,16 +78,16 @@ const CategoriaEncontros = () => {
             <MapView
               style={styles.map}
               initialRegion={{
-                latitude: -29.4597,
-                longitude: -51.9634, 
+                latitude: item.latitude,
+                longitude: item.longitude,
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01,
               }}
             >
               <Marker
                 coordinate={{
-                  latitude: -29.4597, 
-                  longitude: -51.9634, 
+                  latitude: item.latitude,
+                  longitude: item.longitude,
                 }}
                 title={item.nome}
                 description={item.endereco}
@@ -105,6 +109,8 @@ const CategoriaEncontros = () => {
           setEndereco('');
           setTelefone('');
           setEmail('');
+          setLatitude('');
+          setLongitude('');
         }}
       >
         <View style={styles.modalContainer}>
@@ -138,6 +144,22 @@ const CategoriaEncontros = () => {
               onChangeText={setEmail}
               placeholderTextColor="#999"
             />
+            <TextInput
+              style={styles.input}
+              placeholder="Latitude"
+              value={latitude}
+              onChangeText={setLatitude}
+              placeholderTextColor="#999"
+              keyboardType="numeric"
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Longitude"
+              value={longitude}
+              onChangeText={setLongitude}
+              placeholderTextColor="#999"
+              keyboardType="numeric"
+            />
             <TouchableOpacity style={styles.modalButton} onPress={handleAddCentro}>
               <Text style={styles.modalButtonText}>Adicionar</Text>
             </TouchableOpacity>
@@ -147,6 +169,8 @@ const CategoriaEncontros = () => {
               setEndereco('');
               setTelefone('');
               setEmail('');
+              setLatitude('');
+              setLongitude('');
             }}>
               <Text style={styles.modalButtonText}>Cancelar</Text>
             </TouchableOpacity>

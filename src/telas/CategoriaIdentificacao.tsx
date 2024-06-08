@@ -13,8 +13,8 @@ const CategoriaIdentificacao = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const apiUrl = Platform.OS === 'android'
-    ? 'http://10.0.2.2:8080/api/especies-marinhas'
-    : 'http://192.168.15.180:8080/api/especies-marinhas';
+    ? 'http://192.168.1.20:8080/especies'
+    : 'http://localhost:8080/especies';
 
   useEffect(() => {
     fetchEspecies();
@@ -23,11 +23,15 @@ const CategoriaIdentificacao = () => {
   const fetchEspecies = async () => {
     try {
       const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar espécies marinhas: ${response.statusText}`);
+      }
       const data = await response.json();
-      setEspecies(data.content);
+      setEspecies(data);
       setLoading(false);
     } catch (error) {
-      console.error('Erro ao buscar espécies marinhas:', error);
+      console.error('Erro ao buscar espécies marinhas:', error.message);
+      Alert.alert('Erro', `Erro ao buscar espécies marinhas: ${error.message}`);
       setLoading(false);
     }
   };
@@ -97,26 +101,30 @@ const CategoriaIdentificacao = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Espécies Marinhas</Text>
-      <FlatList
-        data={especies}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text style={styles.itemText}>Nome Comum: {item.nomeComum}</Text>
-            <Text style={styles.itemText}>Nome Científico: {item.nomeCientifico}</Text>
-            <Text style={styles.itemText}>Habitat: {item.habitat}</Text>
-            <Text style={styles.itemText}>Status de Conservação: {item.statusConservacao}</Text>
-            <View style={styles.itemButtons}>
-              <TouchableOpacity style={[styles.iconButton, styles.editButton]} onPress={() => handleEditEspecie(item)}>
-                <Ionicons name="create-outline" size={24} color="#fff" />
-              </TouchableOpacity>
-              <TouchableOpacity style={[styles.iconButton, styles.deleteButton]} onPress={() => handleDeleteEspecie(item.id)}>
-                <Ionicons name="trash-outline" size={24} color="#fff" />
-              </TouchableOpacity>
+      {loading ? (
+        <Text>Carregando...</Text>
+      ) : (
+        <FlatList
+          data={especies}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text style={styles.itemText}>Nome Comum: {item.nomeComum}</Text>
+              <Text style={styles.itemText}>Nome Científico: {item.nomeCientifico}</Text>
+              <Text style={styles.itemText}>Habitat: {item.habitat}</Text>
+              <Text style={styles.itemText}>Status de Conservação: {item.statusConservacao}</Text>
+              <View style={styles.itemButtons}>
+                <TouchableOpacity style={[styles.iconButton, styles.editButton]} onPress={() => handleEditEspecie(item)}>
+                  <Ionicons name="create-outline" size={24} color="#fff" />
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.iconButton, styles.deleteButton]} onPress={() => handleDeleteEspecie(item.id)}>
+                  <Ionicons name="trash-outline" size={24} color="#fff" />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        )}
-      />
+          )}
+        />
+      )}
       <TouchableOpacity style={styles.addButton} onPress={() => setModalVisible(true)}>
         <Ionicons name="add-outline" size={30} color="#fff" />
       </TouchableOpacity>
@@ -269,7 +277,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingHorizontal: 10,
     backgroundColor: '#e9ecef',
-    color: '#343a40',  
+    color: '#343a40',
   },
   modalButton: {
     backgroundColor: '#007bff',
